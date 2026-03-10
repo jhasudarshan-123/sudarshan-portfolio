@@ -9,6 +9,32 @@ import Contact from './components/Contact'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
+  const [isDarkMode, setIsDarkMode] = useState(true)
+
+  useEffect(() => {
+    // Check for saved theme preference or default to dark mode
+    const savedTheme = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    
+    if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+      setIsDarkMode(false)
+    } else {
+      setIsDarkMode(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    // Apply theme to document
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+      document.documentElement.classList.remove('light')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.add('light')
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
+  }, [isDarkMode])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,15 +58,15 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <Navbar activeSection={activeSection} />
+    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+      <Navbar activeSection={activeSection} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
       <main>
-        <Home />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Contact />
+        <Home isDarkMode={isDarkMode} />
+        <About isDarkMode={isDarkMode} />
+        <Skills isDarkMode={isDarkMode} />
+        <Experience isDarkMode={isDarkMode} />
+        <Projects isDarkMode={isDarkMode} />
+        <Contact isDarkMode={isDarkMode} />
       </main>
     </div>
   )

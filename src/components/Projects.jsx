@@ -91,14 +91,14 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="py-24 bg-gradient-to-b from-dark-100 to-navy-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <h2 className="section-title">Featured <span className="gradient-text">Projects</span></h2>
           <p className="section-subtitle">
@@ -106,7 +106,7 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-12">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -115,50 +115,51 @@ const Projects = () => {
               transition={{ duration: 0.8, delay: 0.2 * index }}
               viewport={{ once: true }}
             >
-              <div className="glass-card p-8 glass-card-hover">
-                <div className="flex flex-col lg:flex-row gap-8">
+              <div className="glass-card p-4 sm:p-6 lg:p-8 glass-card-hover">
+                <div className="flex flex-col gap-6">
                   {/* Project Header */}
-                  <div className="flex-1">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className={`w-16 h-16 bg-gradient-to-br ${getCategoryColor(project.category)} rounded-xl flex items-center justify-center border`}>
-                        {project.icon}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-3xl font-bold text-gray-100 mb-3">{project.title}</h3>
-                        <span className={`inline-block px-4 py-2 rounded-full text-xs font-medium text-white ${getCategoryBadgeColor(project.category)}`}>
-                          {project.category}
-                        </span>
-                      </div>
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${getCategoryColor(project.category)} rounded-lg sm:rounded-xl flex items-center justify-center border flex-shrink-0`}>
+                      {project.icon}
                     </div>
-                    
-                    <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-100 mb-2 sm:mb-3">{project.title}</h3>
+                      <span className={`inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium text-white ${getCategoryBadgeColor(project.category)}`}>
+                        {project.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Project Content */}
+                  <div className="space-y-6">
+                    <p className="text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed">
                       {project.description}
                     </p>
 
                     {/* Features */}
-                    <div className="mb-8">
-                      <h4 className="text-xl font-semibold text-gray-100 mb-4">Key Features:</h4>
-                      <div className="grid md:grid-cols-2 gap-3">
+                    <div className="space-y-3">
+                      <h4 className="text-lg sm:text-xl font-semibold text-gray-100">Key Features:</h4>
+                      <ul className="space-y-2">
                         {project.features.map((feature, idx) => (
-                          <motion.div
+                          <motion.li
                             key={idx}
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: 0.05 * idx }}
+                            transition={{ duration: 0.4, delay: 0.1 * idx }}
                             viewport={{ once: true }}
-                            className="flex items-start gap-3"
+                            className="flex items-center gap-2 text-gray-300 text-sm sm:text-base"
                           >
-                            <div className="w-2 h-2 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-gray-300">{feature}</span>
-                          </motion.div>
+                            <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0 mt-1"></div>
+                            {feature}
+                          </motion.li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
 
                     {/* Technologies */}
-                    <div className="mb-8">
-                      <h4 className="text-xl font-semibold text-gray-100 mb-4">Technology Stack:</h4>
-                      <div className="flex flex-wrap gap-3">
+                    <div>
+                      <h4 className="text-lg sm:text-xl font-semibold text-gray-100 mb-3 sm:mb-4">Technology Stack:</h4>
+                      <div className="flex flex-wrap gap-2 sm:gap-3">
                         {project.technologies.map((tech, idx) => (
                           <motion.span
                             key={idx}
@@ -166,7 +167,7 @@ const Projects = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.4, delay: 0.05 * idx }}
                             viewport={{ once: true }}
-                            className="tech-badge"
+                            className="tech-badge text-xs sm:text-sm"
                           >
                             {tech}
                           </motion.span>
