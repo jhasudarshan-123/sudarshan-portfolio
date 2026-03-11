@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#1f2937"/>
+  <text x="200" y="100" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="16">Shopping Cart</text>
+  <rect x="50" y="120" width="300" height="60" fill="#374151" rx="5"/>
+  <text x="200" y="155" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="12">Cart Items: 3 | Total: $299.99</text>
+  <rect x="150" y="170" width="100" height="20" fill="#3b82f6" rx="3"/>
+  <text x="200" y="183" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="10">Checkout</text>
+</svg>

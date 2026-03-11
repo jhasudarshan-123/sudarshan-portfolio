@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#1f2937"/>
+  <text x="200" y="100" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="16">Products Page</text>
+  <rect x="50" y="120" width="80" height="40" fill="#374151" rx="5"/>
+  <rect x="160" y="120" width="80" height="40" fill="#374151" rx="5"/>
+  <rect x="270" y="120" width="80" height="40" fill="#374151" rx="5"/>
+  <text x="90" y="145" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="10">Product 1</text>
+  <text x="200" y="145" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="10">Product 2</text>
+  <text x="310" y="145" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-family="Arial" font-size="10">Product 3</text>
+</svg>

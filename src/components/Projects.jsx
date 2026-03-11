@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { FaServer, FaDatabase, FaCloud, FaCode } from 'react-icons/fa'
+import { FaServer, FaDatabase, FaCloud, FaCode, FaShoppingCart, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 
-const Projects = () => {
+const Projects = ({ isDarkMode }) => {
   const projects = [
     {
       title: 'MYTPlus',
@@ -61,6 +61,22 @@ const Projects = () => {
       technologies: ['Java', 'Spring Boot', 'React.js', 'PostgreSQL'],
       category: 'healthcare',
       icon: <FaCloud className="text-purple-400" />
+    },
+    {
+      title: 'E-Commerce Full Stack Application',
+      description: 'A full-stack e-commerce web application where users can browse products, add items to cart, and place orders. The application includes authentication, product management, and REST API integration.',
+      features: [
+        'User registration and login system',
+        'Product listing and detailed product pages',
+        'Shopping cart with add/remove functionality',
+        'Secure checkout process',
+        'Order history and tracking',
+        'Admin product management dashboard'
+      ],
+      technologies: ['React.js', 'Java Spring Boot', 'MySQL', 'REST APIs', 'JWT'],
+      category: 'ecommerce',
+      icon: <FaShoppingCart className="text-orange-400" />,
+      githubLink: 'https://github.com/jhasudarshan-123/ecommerce-app'
     }
   ]
 
@@ -72,6 +88,8 @@ const Projects = () => {
         return 'from-green-500/20 to-green-600/20 border-green-500/30'
       case 'education':
         return 'from-purple-500/20 to-purple-600/20 border-purple-500/30'
+      case 'ecommerce':
+        return 'from-orange-500/20 to-orange-600/20 border-orange-500/30'
       default:
         return 'from-gray-500/20 to-gray-600/20 border-gray-500/30'
     }
@@ -85,13 +103,17 @@ const Projects = () => {
         return 'bg-gradient-to-r from-green-500 to-green-600'
       case 'education':
         return 'bg-gradient-to-r from-purple-500 to-purple-600'
+      case 'ecommerce':
+        return 'bg-gradient-to-r from-orange-500 to-orange-600'
       default:
         return 'bg-gradient-to-r from-gray-500 to-gray-600'
     }
   }
 
   return (
-    <section id="projects" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-900 to-black">
+    <section id="projects" className={`py-16 sm:py-20 lg:py-24 transition-colors duration-300 ${
+      isDarkMode ? 'bg-gradient-to-b from-gray-900 to-black' : 'bg-gradient-to-b from-gray-50 to-white'
+    }`}>
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -123,7 +145,7 @@ const Projects = () => {
                       {project.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-100 mb-2 sm:mb-3">{project.title}</h3>
+                      <h3 className={`text-xl sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>{project.title}</h3>
                       <span className={`inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium text-white ${getCategoryBadgeColor(project.category)}`}>
                         {project.category}
                       </span>
@@ -132,13 +154,13 @@ const Projects = () => {
 
                   {/* Project Content */}
                   <div className="space-y-6">
-                    <p className="text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed">
+                    <p className={`text-sm sm:text-base lg:text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       {project.description}
                     </p>
 
                     {/* Features */}
                     <div className="space-y-3">
-                      <h4 className="text-lg sm:text-xl font-semibold text-gray-100">Key Features:</h4>
+                      <h4 className={`text-lg sm:text-xl font-semibold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>Key Features:</h4>
                       <ul className="space-y-2">
                         {project.features.map((feature, idx) => (
                           <motion.li
@@ -147,7 +169,7 @@ const Projects = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4, delay: 0.1 * idx }}
                             viewport={{ once: true }}
-                            className="flex items-center gap-2 text-gray-300 text-sm sm:text-base"
+                            className={`flex items-center gap-2 text-sm sm:text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
                           >
                             <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0 mt-1"></div>
                             {feature}
@@ -158,7 +180,7 @@ const Projects = () => {
 
                     {/* Technologies */}
                     <div>
-                      <h4 className="text-lg sm:text-xl font-semibold text-gray-100 mb-3 sm:mb-4">Technology Stack:</h4>
+                      <h4 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>Technology Stack:</h4>
                       <div className="flex flex-wrap gap-2 sm:gap-3">
                         {project.technologies.map((tech, idx) => (
                           <motion.span
@@ -174,6 +196,26 @@ const Projects = () => {
                         ))}
                       </div>
                     </div>
+
+                    {/* Project Links */}
+                    {(project.githubLink || project.liveDemoLink) && (
+                      <div className="pt-4 border-t border-gray-800">
+                        <h4 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>Project Links:</h4>
+                        <div className="flex flex-wrap gap-3 sm:gap-4">
+                          {project.githubLink && (
+                            <a
+                              href={project.githubLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg transition-all duration-300 hover:scale-105 border border-gray-700"
+                            >
+                              <FaGithub className="text-lg" />
+                              <span className="text-sm sm:text-base font-medium">GitHub</span>
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
